@@ -2,7 +2,7 @@ import React, { useEffect, useState, } from "react";
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Card from 'react-bootstrap/Card';
-import '../App.css';
+import '../scss/style.css';
 
 
 //When user clicks on button, toggle between hiding or showing new form
@@ -69,7 +69,7 @@ function Quest() {
             <div className="dropdown">
                 <Button onClick={newQuest} className='new-button dropdown-basic-button' variant="outline-secondary">New Quest</Button>
                 <div id='dropdownForm' className="dropdown-content">
-                    <form method="POST" className='form' action='http://localhost:3001/quest'>
+                    <form method="POST" className='form' action='http://localhost:8080/quest'>
                         <div className='form-group'>
                             <label htmlFor="name">
                                 Name:

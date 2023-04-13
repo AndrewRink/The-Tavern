@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Button } from 'react-bootstrap';
-import '../App.css';
+import '../scss/style.css';
 
 function NewEmployeeForm({ handleAdd, newEmployee, setNewEmployee }) {
     const handleSubmit = (event) => {
@@ -70,7 +70,7 @@ function NewEmployeeForm({ handleAdd, newEmployee, setNewEmployee }) {
             <Button variant="success" type="submit" >
                 Submit
             </Button>
-            <Button variant='danger' href="http://localhost:3001/employees">
+            <Button variant='danger' href="http://localhost:8080/employees">
                 Cancel
             </Button>
         </Form>

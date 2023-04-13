@@ -1,0 +1,85 @@
+@import "config";
+@import "mixins";
+@import "functions";
+
+body {
+    background-color: $background-color;
+}
+.home{
+    .homeText {
+        @include home-font();
+        font-size: font-scale(4);
+        
+    }
+    .home-title{
+        @include home-font();
+        font-size: $title-size
+    
+    }
+    .homeImage{
+        @include image-format();
+
+    }
+}
+
+.mainApp{
+
+    #tavern_brand {
+        @include image-format();
+        max-width: 90px;
+        max-height: 90px;
+    }
+  
+  #nav {
+        display: $default-display;
+        justify-content: space-around;
+        color: $nav-font;
+    }
+    }
+
+.navContainer {
+    background-color: $card-primary;
+    display: flex;
+    color: $home-font;
+}
+
+.employee-card{
+    background-color: $card-primary;
+
+    .employee-portrait {
+        max-width: 200px;
+        max-height: 200px;
+        padding: 5px;
+        margin-left: 30px;
+        justify-content: center;
+        border-radius: 20px;
+    }
+
+    .employee-name{
+        @include card-font();
+
+    }
+
+    .employee-title{
+        @include card-font();
+    }
+
+    .exp{
+        @include card-font();
+    }
+
+    .salary{
+        @include card-font();
+    }
+}
+
+.employee-form {
+    background-color: $background-color;
+    color: $card-primary;
+}
+
+.form-header {
+    background-color: $card-primary;
+    color: lightness-shift($background-color);
+}
+

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, } from "react"
 import { Button, ButtonGroup, Modal, Card } from 'react-bootstrap'
-import '../App.css';
+import '../scss/style.css';
 import NewEmployeeForm from './NewEmployeeForm'
 import NewEditForm from "./NewEditForm";
 
@@ -100,14 +100,14 @@ function Employees() {
             <Card className='employee-card' key={index} style={{ width: '18rem' }}>
                 <Card.Img className='employee-portrait' variant="top" src={employee.portrait} alt={employee.portrait} />
                 <Card.Body>
-                    <Card.Title>{employee.name}</Card.Title>
-                    <Card.Text>
+                    <Card.Title className="employee-name">{employee.name}</Card.Title>
+                    <Card.Text className="employee-title">
                         Job Title: {employee.job_title}
                     </Card.Text>
-                    <Card.Text>
+                    <Card.Text className="exp">
                         Years of experience: {employee.years_of_experience}
                     </Card.Text>
-                    <Card.Text>
+                    <Card.Text className="salary">
                         Weekly Salary: {employee.weekly_salary}
                     </Card.Text>
                     
@@ -127,16 +127,16 @@ function Employees() {
 
     //page render
     return (
-        <main>
+        <main className="employee-info">
             <h1 className="componentText">Employee List</h1>
             <Button variant="warning" className='newFormButton' onClick={handleShow}>
                 Add New Employee
             </Button>
             <Modal show={formShow} onHide={handleClose}>
-                <Modal.Header>
+                <Modal.Header className="form-header">
                     <Modal.Title>Employee Information</Modal.Title>
                 </Modal.Header>
-                <Modal.Body><NewEmployeeForm key="employee._id" handleAdd={handleAdd} newEmployee={newEmployee}
+                <Modal.Body className="employee-form"><NewEmployeeForm key="employee._id" handleAdd={handleAdd} newEmployee={newEmployee}
                     setNewEmployee={setNewEmployee} formShow={formShow} setFormShow={setFormShow} />
                 </Modal.Body>
             </Modal>

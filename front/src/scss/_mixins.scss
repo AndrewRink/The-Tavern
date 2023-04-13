@@ -1,0 +1,17 @@
+@mixin home-font {
+    -webkit-text-fill-color: $home-font;
+    -webkit-text-stroke: 1px;
+    font-weight: 1000;
+    text-align: $alignment
+}
+
+@mixin card-font {
+    text-align: $alignment;
+    font-family: $fonts;
+    color:$card-font;
+}
+
+@mixin image-format{
+    width: auto;
+    height: auto;
+}

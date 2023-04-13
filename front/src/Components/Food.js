@@ -2,7 +2,7 @@ import React, { useEffect, useState, } from "react";
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Card from 'react-bootstrap/Card';
-import '../App.css';
+import '../scss/style.css';
 
 
 //When user clicks on button, toggle between hiding or showing new form

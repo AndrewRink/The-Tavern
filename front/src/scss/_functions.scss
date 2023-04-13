@@ -1,0 +1,18 @@
+@function font-scale($exponent, $base-font-size: 18px, $ratio: 1.2) {
+    $value: 1;
+
+    @for $i from 1 through $exponent {
+        @warn 'Changing font px size exponentially.';
+        $value: $value * $ratio;
+    }
+
+    @return if($exponent > 0, $base-font-size * $value, $base-font-size);
+}
+
+@function lightness-shift($color){
+    @if ( lightness($color) < 25% ) {
+        @return lighten($color, 10%);
+    }@else{
+        @return darken($color, 10%);
+    }
+}

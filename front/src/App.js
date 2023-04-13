@@ -17,7 +17,7 @@ import Rooms from './Components/Rooms';
 import QuestBoard from './Components/QuestBoard';
 import NewEmployeeForm from './Components/NewEmployeeForm';
 import NewEditForm from './Components/NewEditForm'
-import './App.css';
+import './scss/style.css';
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
@@ -28,23 +28,23 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className="mainApp">
       <Router>
-      <Navbar className='nav' variant='light'expand="lg">
-      <Container>
-        <Nav className='navbar' activeKey='/' >
+      <Navbar id='nav' variant='light'expand="lg">
+      <Container className='navContainer'>
+        <Nav  activeKey='/' >
           <Navbar.Brand><img id='tavern_brand' src='/imgs/tavern_logo.png' alt='tavern logo'/></Navbar.Brand>
           <Nav.Item>
-            <Nav.Link href='/'>Home</Nav.Link>
+            <Nav.Link class='navLink' href='/'>Home</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link href='/employees'>Employees</Nav.Link>
+            <Nav.Link class='navLink' href='/employees'>Employees</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href='/rooms'>Rooms</Nav.Link>
+                <Nav.Link class='navLink' href='/rooms'>Rooms</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href='/questboard'>Quest Board</Nav.Link>
+                <Nav.Link class='navLink' href='/questboard'>Quest Board</Nav.Link>
               </Nav.Item>
               <DropdownButton className="dropdown-basic-button"  variant="light" title="Inventory">
                 <div className='dropdown-Nav'>

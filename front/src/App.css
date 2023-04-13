@@ -1,4 +1,4 @@
-.App {
+ .App {
   text-align: center;
 }
 
@@ -42,6 +42,7 @@
   display: inline;
 }
 /* Dropdown Content (Hidden by Default) */
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -100,4 +101,4 @@
 .newFormButton {
   margin-top: 20px;
   margin-bottom: 20px;
-}
+} 
