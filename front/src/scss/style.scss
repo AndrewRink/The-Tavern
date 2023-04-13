@@ -46,7 +46,7 @@ body {
 .employee-card{
     background-color: $card-primary;
 
-    .employee-portrait {
+    &.employee-portrait {
         max-width: 200px;
         max-height: 200px;
         padding: 5px;
@@ -55,20 +55,20 @@ body {
         border-radius: 20px;
     }
 
-    .employee-name{
+    &.employee-name{
         @include card-font();
 
     }
 
-    .employee-title{
+    &.employee-title{
         @include card-font();
     }
 
-    .exp{
+    &.exp{
         @include card-font();
     }
 
-    .salary{
+    &.salary{
         @include card-font();
     }
 }
