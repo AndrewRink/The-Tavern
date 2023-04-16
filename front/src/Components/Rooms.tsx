@@ -7,9 +7,9 @@ import '../App.css';
 
 //When user clicks on button, toggle between hiding or showing new form
 function newRoom() {
-    document.getElementById("dropdownForm").classList.toggle("show");
+    document.getElementById("dropdownForm")!.classList.toggle("show");
 }
-function deleteRoom(room_id) {
+function deleteRoom(room_id: number) {
     fetch(`http://localhost:8080/room/${room_id}`, {method: 'DELETE'})
             .then(
                 response => {
@@ -22,13 +22,13 @@ function deleteRoom(room_id) {
 
 function Room() {
     //setting state for drink data
-    const [roomData, setRoomData] = useState([])
+    const [roomData, setRoomData] = useState<any[]>([])
     //fetching data from backend
     useEffect(() => {
         fetch('http://localhost:8080/room')
             .then(
                 response => {
-                    return response = response.json()
+                    return response.json()
                 }).then(data => {
                     setRoomData(data)
                 })
@@ -53,7 +53,7 @@ function Room() {
                     Cost Per Night: {room.cost_per_night}
                     </Card.Text>
 
-                    <ButtonGroup variant='secondary'>
+                    <ButtonGroup>
                         <Button variant="warning">Edit</Button>
                         <Button onClick={() => deleteRoom(room._id)} variant="danger">Delete</Button> 
                     </ButtonGroup>
