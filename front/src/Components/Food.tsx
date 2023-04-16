@@ -7,9 +7,9 @@ import '../App.css';
 
 //When user clicks on button, toggle between hiding or showing new form
 function newFood() {
-    document.getElementById("dropdownForm").classList.toggle("show");
+    document.getElementById("dropdownForm")!.classList.toggle("show");
 }
-function deleteFood(food_id) {
+function deleteFood(food_id: number) {
     fetch(`http://localhost:8080/food/${food_id}`, {method: 'DELETE'})
             .then(
                 response => {
@@ -22,13 +22,13 @@ function deleteFood(food_id) {
 
 function Food() {
     //setting state for food data
-    const [foodData, setFoodData] = useState([])
+    const [foodData, setFoodData] = useState<any[]>([])
     //fetching data from backend
     useEffect(() => {
         fetch('http://localhost:8080/food')
             .then(
                 response => {
-                    return response = response.json()
+                    return response.json()
                 }).then(data => {
                     setFoodData(data)
                 })
@@ -55,7 +55,7 @@ function Food() {
                     Sell Price: {food.sell_price}
                     </Card.Text>
 
-                    <ButtonGroup variant='secondary'>
+                    <ButtonGroup>
                         <Button variant="warning">Edit</Button>
                         <Button onClick={() => deleteFood(food._id)} variant="danger">Delete</Button> 
                     </ButtonGroup>

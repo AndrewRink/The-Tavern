@@ -18,11 +18,12 @@ import QuestBoard from './Components/QuestBoard';
 import NewEmployeeForm from './Components/NewEmployeeForm';
 import NewEditForm from './Components/NewEditForm'
 import './App.css';
+import React from 'react';
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
   integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-  crossorigin="anonymous"
+  crossOrigin="anonymous"
 />
 
 
@@ -66,8 +67,17 @@ function App() {
             <Route path='/equipment' element={<Equipment />} />
             <Route path='/rooms' element={<Rooms />} />
             <Route path='/questboard' element={<QuestBoard />} />
-            <Route path= '/new-employee' component={ NewEmployeeForm } />
-            <Route path= '/edit-employee' component= { NewEditForm } />
+            <Route path= '/new-employee' element={ <NewEmployeeForm handleAdd={undefined} newEmployee={undefined} setNewEmployee={undefined}/> } />
+            <Route path= '/edit-employee' element= { <NewEditForm employees={{
+              name: undefined,
+              job_title: undefined,
+              years_of_experience: undefined,
+              portrait: undefined,
+              weekly_salary: undefined,
+              _id: undefined
+            }} handleEdit={function (arg0: any, arg1: { name: any[]; job_title: any[]; years_of_experience: any[]; portrait: any[]; weekly_salary: any[]; }): void {
+              throw new Error('Function not implemented.');
+            } }/> } />
           </Routes>
         </div>
       </Router>

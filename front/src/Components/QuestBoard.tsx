@@ -6,11 +6,11 @@ import '../App.css';
 
 
 //When user clicks on button, toggle between hiding or showing new form
-function newDrink() {
-    document.getElementById("dropdownForm").classList.toggle("show");
+function newQuest() {
+    document.getElementById("dropdownForm")!.classList.toggle("show");
 }
-function deleteDrink(drink_id) {
-    fetch(`http://localhost:8080/drink/${drink_id}`, {method: 'DELETE'})
+function deleteQuest(quest_id: number) {
+    fetch(`http://localhost:8080/quest/${quest_id}`, {method: 'DELETE'})
             .then(
                 response => {
                     return (
@@ -20,42 +20,42 @@ function deleteDrink(drink_id) {
                 })
     }
 
-function Drink() {
+function Quest() {
     //setting state for drink data
-    const [drinkData, setDrinkData] = useState([])
+    const [questData, setQuestData] = useState<any[]>([])
     //fetching data from backend
     useEffect(() => {
-        fetch('http://localhost:8080/drink')
+        fetch('http://localhost:8080/quest')
             .then(
                 response => {
-                    return response = response.json()
+                    return response.json()
                 }).then(data => {
-                    setDrinkData(data)
+                    setQuestData(data)
                 })
     }
 
         , [])
     
-    let drinkList = drinkData.map((drink, index) => {
+    let questList = questData.map((quest, index) => {
         return (
-            <Card className='drink-card' key={index} style={{ width: '18rem'}}>
+            <Card className='quest-card' key={index} style={{ width: '18rem'}}>
             
                 <Card.Body>
-                    <Card.Title>{drink.name}</Card.Title>
+                    <Card.Title>{quest.name}</Card.Title>
                 
                     <Card.Text>
-                        Amount In Stock: {drink.amount_in_stock}
+                        Description: {quest.description}
                     </Card.Text>
                     <Card.Text>
-                        Cost To Buy: {drink.cost_to_buy}
+                        Pay: {quest.pay}
                     </Card.Text>
                     <Card.Text>
-                    Sell Price: {drink.sell_price}
+                    Status: {quest.status}
                     </Card.Text>
 
-                    <ButtonGroup variant='secondary'>
+                    <ButtonGroup>
                         <Button variant="warning">Edit</Button>
-                        <Button onClick={() => deleteDrink(drink._id)} variant="danger">Delete</Button> 
+                        <Button onClick={() => deleteQuest(quest._id)} variant="danger">Delete</Button> 
                     </ButtonGroup>
                 </Card.Body>
             </Card>
@@ -65,11 +65,11 @@ function Drink() {
     //page render
     return (
         <main>
-            <h1>Drink List</h1>
+            <h1>Quest Board</h1>
             <div className="dropdown">
-                <Button onClick={newDrink} className='new-button dropdown-basic-button' variant="outline-secondary">New Drink</Button>
+                <Button onClick={newQuest} className='new-button dropdown-basic-button' variant="outline-secondary">New Quest</Button>
                 <div id='dropdownForm' className="dropdown-content">
-                    <form method="POST" className='form' action='http://localhost:8080/drink'>
+                    <form method="POST" className='form' action='http://localhost:3001/quest'>
                         <div className='form-group'>
                             <label htmlFor="name">
                                 Name:
@@ -78,22 +78,22 @@ function Drink() {
                         </div>
                         
                         <div className='form-group'>
-                            <label htmlFor='amount_in_stock'>
-                                Amount In Stock:
-                                <input className='form-control' id=' amount_in_stock' type="num" name=' amount_in_stock' />
+                            <label htmlFor='description'>
+                                Description:
+                                <input className='form-control' id='description' type="text" name='description' />
                             </label>
                         </div>
 
                         <div className='form-group'>
-                            <label htmlFor='cost_to_buy'>
-                                Cost To Buy:
-                                <input className='form-control' id='cost_to_buy' type="num" name='cost_to_buy' required />
+                            <label htmlFor='pay'>
+                                Pay:
+                                <input className='form-control' id='pay' type="num" name='pay' required />
                             </label>
                         </div>
                         <div className='form-group'>
-                            <label htmlFor='sell_price'>
-                                Sell Price:
-                                <input className='form-control' id='sell_price' type="num" name='sell_price' required />
+                            <label htmlFor='status'>
+                                Status
+                                <input className='form-control' id='status' type="text" name='status' required />
                             </label>
                         </div>
 
@@ -102,11 +102,11 @@ function Drink() {
                 </div>
             </div>
             <div className='row'>
-                {drinkList}
+                {questList}
             </div>
 
         </main>
     )
 }
 
-export default Drink
+export default Quest

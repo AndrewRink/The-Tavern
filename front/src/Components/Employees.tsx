@@ -10,17 +10,17 @@ import NewEditForm from "./NewEditForm";
 function Employees() {
 
     //State and function for changing state on new (post) Form
-    const [formShow, setFormShow] = useState(false);
-    const [editFormShow, setEditFormShow] = useState(false);
-    const [selectedEmployee, setSelectedEmployee] = useState(null);
+    const [formShow, setFormShow] = useState<any>(false);
+    const [editFormShow, setEditFormShow] = useState<any>(false);
+    const [selectedEmployee, setSelectedEmployee] = useState<any>(null);
     const handleClose = () => setFormShow(false);
     const handleShow = () => setFormShow(true);
     const handleEditShow = () => setEditFormShow(true);
-    const handleEditClose = () => setEditFormShow(false);
+    //const handleEditClose = () => setEditFormShow(false);
 
     //setting state for employee data
-    const [employeesData, setEmployeesData] = useState([])
-    const [newEmployee, setNewEmployee] = useState({
+    const [employeesData, setEmployeesData] = useState<any>([])
+    const [newEmployee, setNewEmployee] = useState<any>({
         name: '',
         job_title: '',
         years_of_experience: '',
@@ -33,14 +33,14 @@ function Employees() {
         fetch('http://localhost:8080/employees')
             .then(
                 response => {
-                    return response = response.json()
+                    return response.json()
                 }).then(data => {
                     setEmployeesData(data)
                 })
     }
         , []);
 
-    const handleAdd = (event) => {
+    const handleAdd = (event: { preventDefault: () => void; }) => {
         event.preventDefault();
         fetch("http://localhost:8080/employees", {
             method: 'POST',
@@ -64,7 +64,7 @@ function Employees() {
         .catch((error) => console.error(error));
     }    
 
-    function deleteEmployee(employee_id) {
+    function deleteEmployee(employee_id: number) {
         fetch(`http://localhost:8080/employees/${employee_id}`, { method: 'DELETE' })
             .then(
                 response => {
@@ -75,14 +75,14 @@ function Employees() {
                 })
     }
 
-    const handleEdit = (employee_id, updatedEmployee) => {
+    const handleEdit = (employee_id: number, updatedEmployee: any) => {
         fetch(`http://localhost:8080/employees/${employee_id}`, {
             method: "PUT",
             headers: {"Content-Type": "application/json",},
             body: JSON.stringify(updatedEmployee),
         })
           .then(() => {
-            const updatedEmployee = employeesData.map((employee) => {
+            const updatedEmployee: any = employeesData.map((employee: { _id: any; }) => {
               if (employee._id === employee_id) {
                 return { ...employee, ...updatedEmployee };
               }
@@ -95,7 +95,7 @@ function Employees() {
           .catch((error) => console.error(error));
       };  
 
-    let employeeList = employeesData.map((employee, index) => {
+    let employeeList = employeesData.map((employee: { portrait: string | undefined; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; job_title: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; years_of_experience: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; weekly_salary: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; _id: any; }, index: React.Key | null | undefined) => {
         return (
             <Card className='employee-card' key={index} style={{ width: '18rem' }}>
                 <Card.Img className='employee-portrait' variant="top" src={employee.portrait} alt={employee.portrait} />
@@ -113,10 +113,10 @@ function Employees() {
                     
                 </Card.Body>
                 <Card.Footer>
-                    <ButtonGroup variant='secondary'>
+                    <ButtonGroup>
                         <Button onClick={() => {
                             setSelectedEmployee(employee._id)
-                            handleEditShow(true);
+                            handleEditShow();
                         }} variant="success">Edit</Button>
                         <Button onClick={() => deleteEmployee(employee._id)} variant="danger">Delete</Button>
                     </ButtonGroup>
@@ -137,7 +137,7 @@ function Employees() {
                     <Modal.Title>Employee Information</Modal.Title>
                 </Modal.Header>
                 <Modal.Body><NewEmployeeForm key="employee._id" handleAdd={handleAdd} newEmployee={newEmployee}
-                    setNewEmployee={setNewEmployee} formShow={formShow} setFormShow={setFormShow} />
+                    setNewEmployee={setNewEmployee}  />
                 </Modal.Body>
             </Modal>
 
@@ -150,9 +150,14 @@ function Employees() {
                 <Modal.Body>
                     {selectedEmployee && (
                         <NewEditForm
-                            selectedEmployee={selectedEmployee}
-                            handleEdit={handleEdit}
-                        />
+                            handleEdit={handleEdit} employees={{
+                                name: undefined,
+                                job_title: undefined,
+                                years_of_experience: undefined,
+                                portrait: undefined,
+                                weekly_salary: undefined,
+                                _id: undefined
+                            }}                        />
                     )}
                 </Modal.Body>
                     </Modal>

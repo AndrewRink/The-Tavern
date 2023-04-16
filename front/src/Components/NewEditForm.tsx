@@ -1,15 +1,16 @@
-import  {React, useState } from "react";
+import  { useState } from "react";
 import { Form, Button } from 'react-bootstrap';
 import '../App.css';
+import React from "react";
 
-function NewEditForm(props) {
-    const [employeeName, setName] = useState([props.employees.name]);
-    const [jobTitle, setJobTitle] = useState([props.employees.job_title]);
-    const [experience, setExperience] = useState([props.employees.years_of_experience]);
-    const [employeePortrait, setPortrait] = useState([props.employees.portrait]);
-    const [salary, setSalary] = useState([props.employees.weekly_salary]);
+function NewEditForm(props: { employees: { name: any; job_title: any; years_of_experience: any; portrait: any; weekly_salary: any; _id: any; }; handleEdit: (arg0: any, arg1: { name: any[]; job_title: any[]; years_of_experience: any[]; portrait: any[]; weekly_salary: any[]; }) => void; }) {
+    const [employeeName, setName] = useState<any>([props.employees.name]);
+    const [jobTitle, setJobTitle] = useState<any>([props.employees.job_title]);
+    const [experience, setExperience] = useState<any>([props.employees.years_of_experience]);
+    const [employeePortrait, setPortrait] = useState<any>([props.employees.portrait]);
+    const [salary, setSalary] = useState<any>([props.employees.weekly_salary]);
 
-const handleSubmit = (event) => {
+const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     const updatedEmployee = {
       name: employeeName,
@@ -21,7 +22,7 @@ const handleSubmit = (event) => {
     props.handleEdit(props.employees._id, updatedEmployee);
     };
     
-    const handleClick = (event) => {
+    const handleClick = (event: { stopPropagation: () => void; }) => {
         event.stopPropagation();
       }
 
