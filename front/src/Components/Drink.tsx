@@ -22,6 +22,7 @@ function deleteDrink(drink_id: number) {
 
 function Drink() {
     //setting state for drink data
+
     const [drinkData, setDrinkData] = useState<any[]>([])
     //fetching data from backend
     useEffect(() => {
