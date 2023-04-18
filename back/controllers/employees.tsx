@@ -2,19 +2,19 @@ const router = require('express').Router()
 const db= require('../models')
 
 //SHOW ALL EMPLOYEES
-router.get('/', (req, res) => {
+router2.get('/', (req: any, res: { send: (arg0: any) => void; render: (arg0: string) => void }) => {
     db.Employee.find()
-        .then((employees) => {
+        .then((employees: any) => {
             res.send(employees)
         })
-        .catch(err => {
+        .catch((err: any) => {
             console.log(err)
             res.render('error404')
           })
 })
 
 //CREATE NEW EMPLOYEE
-router.post('/', async (req, res) => {
+router.post('/', async (req: { body: any }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: unknown): void; new(): any } } }) => {
     try {
         const newEmployeeData  = req.body;
         const newEmployee = await db.Employee.create(newEmployeeData)
@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
 
 
 //get by id
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req: { params: { id: any } }, res: { json: (arg0: any) => void; status: (arg0: number) => { (): any; new(): any; json: { (arg0: { message: any }): void; new(): any } } }) => {
   try {
     const data = await db.Employee.findById(req.params.id);
     res.json(data)
@@ -41,7 +41,7 @@ router.get('/:id', async (req, res) => {
 });
 
 //PUT: Update Employee
-router.put('/:id', async(req,res)=>{
+router.put('/:id', async(req: { body: { name: any; job_title: any; years_of_experience: any; portrait: any; weekly_salary: any }; params: { id: any } },res: { status: (arg0: number) => void; json: (arg0: any) => void; send: (arg0: { error: string }) => void })=>{
   
   //const employee = req.body
     try {
@@ -66,7 +66,7 @@ router.put('/:id', async(req,res)=>{
 }) 
   
 // Delete employee
-router.delete('/:id', async (req,res)=> {
+router.delete('/:id', async (req: { params: { id: any } },res: { send: (arg0: string) => void; status: (arg0: number) => { (): any; new(): any; json: { (arg0: { message: any }): void; new(): any } } })=> {
     try {
         const id = req.params.id;
         const data = await db.Employee.findByIdAndDelete(id)
