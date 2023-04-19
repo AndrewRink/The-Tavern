@@ -22,7 +22,7 @@ function deleteFood(food_id: number) {
 
 function Food() {
     //setting state for food data
-    const [foodData, setFoodData] = useState<any[]>([])
+    const [foodData, setFoodData] = useState<foodProp[]>([])
     //fetching data from backend
     useEffect(() => {
         fetch('http://localhost:8080/food')
@@ -36,7 +36,7 @@ function Food() {
 
         , [])
     
-    let foodList = foodData.map((food, index) => {
+    let foodList = foodData.map((food: foodProp, index:number) => {
         return (
             <Card className='food-card' key={index} style={{ width: '18rem'}}>
             

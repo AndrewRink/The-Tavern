@@ -3,13 +3,13 @@ import { Form, Button } from 'react-bootstrap';
 import '../App.css';
 
 function NewEmployeeForm({ handleAdd, newEmployee, setNewEmployee }) {
-    const handleSubmit = (event) => {
+    const handleSubmit = (event: any) => {
         handleAdd(event);
     };
 
-    const handleChange = (event) => {
+    const handleChange = (event: any) => {
         const { name, value } = event.target;
-        setNewEmployee((employeeList) => ({
+        setNewEmployee((employeeList: any) => ({
             ...employeeList,
             [name]: value,
         }))

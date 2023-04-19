@@ -82,7 +82,7 @@ function Employees() {
             body: JSON.stringify(updatedEmployee),
         })
           .then(() => {
-            const updatedEmployee: any = employeesData.map((employee: { _id: any; }) => {
+            const updatedEmployee: any = employeesData.map((employee: { _id: number; }) => {
               if (employee._id === employee_id) {
                 return { ...employee, ...updatedEmployee };
               }

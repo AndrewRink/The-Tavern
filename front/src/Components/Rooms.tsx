@@ -22,7 +22,7 @@ function deleteRoom(room_id: number) {
 
 function Room() {
     //setting state for drink data
-    const [roomData, setRoomData] = useState<any[]>([])
+    const [roomData, setRoomData] = useState<roomProp[]>([])
     //fetching data from backend
     useEffect(() => {
         fetch('http://localhost:8080/room')
@@ -36,7 +36,7 @@ function Room() {
 
         , [])
     
-    let roomList = roomData.map((room, index) => {
+    let roomList = roomData.map((room: roomProp, index: number) => {
         return (
             <Card className='room-card' key={index} style={{ width: '18rem'}}>
             

@@ -23,7 +23,7 @@ function deleteDrink(drink_id: number) {
 function Drink() {
     //setting state for drink data
 
-    const [drinkData, setDrinkData] = useState<any[]>([])
+    const [drinkData, setDrinkData] = useState<drinkProp[]>([])
     //fetching data from backend
     useEffect(() => {
         fetch('http://localhost:8080/drink')
@@ -37,7 +37,7 @@ function Drink() {
 
         , [])
     
-    let drinkList = drinkData.map((drink, index) => {
+    let drinkList = drinkData?.map((drink: drinkProp, index: number) => {
         return (
             <Card className='drink-card' key={index} style={{ width: '18rem'}}>
             

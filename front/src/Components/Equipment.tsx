@@ -22,7 +22,9 @@ function deleteEquipment(equipment_id: number) {
 
 function Equipment() {
     //setting state for equipment data
-    const [equipmentData, setEquipmentData] = useState<any[]>([])
+    const [equipmentData ,setEquipmentData] = useState<equipmentProp[]>()
+
+    
     //fetching data from backend
     useEffect(() => {
         fetch('http://localhost:8080/equipment')
@@ -36,7 +38,7 @@ function Equipment() {
 
         , [])
     console.log(equipmentData);
-    let equipmentList = equipmentData.map((equipment, index) => {
+    let equipmentList = equipmentData?.map((equipment: equipmentProp, index: number) => {
         return (
             <Card className='equipment-card' key={index} style={{ width: '18rem'}}>
             

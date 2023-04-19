@@ -22,7 +22,7 @@ function deleteQuest(quest_id: number) {
 
 function Quest() {
     //setting state for drink data
-    const [questData, setQuestData] = useState<any[]>([])
+    const [questData, setQuestData] = useState<questProp[]>([])
     //fetching data from backend
     useEffect(() => {
         fetch('http://localhost:8080/quest')
@@ -36,7 +36,7 @@ function Quest() {
 
         , [])
     
-    let questList = questData.map((quest, index) => {
+    let questList = questData.map((quest: questProp, index:number) => {
         return (
             <Card className='quest-card' key={index} style={{ width: '18rem'}}>
             
